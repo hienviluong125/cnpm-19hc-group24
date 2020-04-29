@@ -1,8 +1,8 @@
-#node: >= v13.12.0
-#npm: >= 6.14.4
+node: >= v13.12.0
+npm: >= 6.14.4
 
-##create an '.env' file on root directory
-###example
+create an '.env' file on root directory
+example
 .env
 DB_USER=postgres
 DB_PASSWORD=123456
@@ -13,11 +13,11 @@ DB_PORT=5432
 DB_HOST=localhost
 PORT=3000
 
-#how to install and init database ?
-##npm install
-##npm install --save-dev sequelize-cli
-##npx sequelize-cli db:create
-##npx sequelize-cli db:migrate
+how to install and init database ?
+npm install
+npm install --save-dev sequelize-cli
+npx sequelize-cli db:create
+npx sequelize-cli db:migrate
 
-#how to run project ?
-##npm run start
+how to run project ?
+npm run start
