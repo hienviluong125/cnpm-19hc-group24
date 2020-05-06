@@ -19,3 +19,4 @@ how to install and init database ?
 
 how to run project ?
 - npm run start
+- visit localhost:4200
