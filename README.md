@@ -25,3 +25,7 @@ how to run project ?
 - admin account:
 - username: admin@test.com
 - password: 12345678
+
+how to list routers ?
+- 'npm run routes' to list all routes
+- or 'npm run routes users' to list all user routes
