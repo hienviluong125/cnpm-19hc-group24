@@ -2,6 +2,7 @@
 ## npm: >= 6.14.4
 
 create an '.env' file on root directory
+please check env.sample file to get correct format
 - DB_USER=postgres
 - DB_PASSWORD=123456
 - DB_NAME_DEVELOPMENT=qlpg_development
