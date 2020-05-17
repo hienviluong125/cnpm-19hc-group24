@@ -16,7 +16,11 @@ how to install and init database ?
 - npm install --save-dev sequelize-cli
 - npx sequelize-cli db:create
 - npx sequelize-cli db:migrate
+- npx sequelize-cli db:seed:all
 
 how to run project ?
 - npm run start
-- visit localhost:4200
+- visit localhost:3000
+- admin account:
+- username: admin@test.com
+- password: 12345678

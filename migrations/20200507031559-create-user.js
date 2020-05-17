@@ -8,14 +8,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      first_name: {
         type: Sequelize.STRING
       },
-      lastName: {
+      last_name: {
         type: Sequelize.STRING
+      },
+      username: {
+        type: Sequelize.STRING,
+        unique: true
       },
       email: {
+        type: Sequelize.STRING,
+        unique: true
+      },
+      password: {
         type: Sequelize.STRING
+      },
+      role: {
+        type: Sequelize.ENUM,
+        values: ['admin', 'member']
       },
       createdAt: {
         allowNull: false,
