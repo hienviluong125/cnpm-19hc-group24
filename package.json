@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "routes": "node listEndpoints.js"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
@@ -14,6 +15,7 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-ejs-layouts": "^2.5.0",
+    "express-list-endpoints": "^4.0.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.4.1",
     "http-errors": "~1.6.3",
