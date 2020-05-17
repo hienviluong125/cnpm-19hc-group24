@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true
     },
     password: DataTypes.STRING,
-    role: { type: DataTypes.ENUM, values: ['admin', 'member'] },
+    role: { type: DataTypes.ENUM, values: ['admin', 'consultant', 'member', 'financial_advisor', 'manager', 'trainer', 'technician'] },
     email: DataTypes.STRING
   }, {});
   User.associate = function (models) {
