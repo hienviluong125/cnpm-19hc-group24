@@ -29,6 +29,9 @@ module.exports = {
         type: Sequelize.ENUM,
         values: ['admin', 'consultant', 'member', 'financial_advisor', 'manager', 'trainer', 'technician']
       },
+      gender: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

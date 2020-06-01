@@ -9,10 +9,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       course_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Courses',
+          key: 'id'
+        }
       },
       day_of_week_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'DayOfWeeks',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

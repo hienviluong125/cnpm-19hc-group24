@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   WorkShift.associate = function(models) {
     // associations can be defined here
+    WorkShift.belongsTo(models.DayOfWeek, { foreignKey: 'day_of_week_id', as: 'dayOfWeek' })
   };
   return WorkShift;
 };

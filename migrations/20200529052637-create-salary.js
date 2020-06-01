@@ -12,11 +12,18 @@ module.exports = {
         type: Sequelize.DECIMAL
       },
       label: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       updatedAt: {
         allowNull: false,
