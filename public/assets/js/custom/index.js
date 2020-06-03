@@ -6,5 +6,5 @@ $(document).ready(function () {
       let buttonHref = $(this).attr('href');
       window.location.href = buttonHref;
     }
-  })
+  });
 });

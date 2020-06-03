@@ -13,6 +13,7 @@ const flash = require('connect-flash');
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
+const trainerRouter = require('./routes/trainer');
 
 const app = express();
 
@@ -42,6 +43,7 @@ passportLocalConfig(passport);
 
 app.use('/', indexRouter);
 app.use('/users', userRouter);
+app.use('/trainers', trainerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

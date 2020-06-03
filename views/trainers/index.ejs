@@ -1,0 +1,65 @@
+<div class="container-fluid pt-2">
+  <%- include('./../shared/flash-message', { messages: messages }) %>
+  <div class="row">
+    <div class="col-md-4">
+      <h4 class="mt-2 pt-1">Today's available trainers</h4>
+      <% if(trainers.length > 0) { %>
+        <div class="row bg-white p-2" style="margin-top: 38px;overflow-y: scroll;max-height: 569px;">
+          <% for(let i = 0; i < trainers.length; i++ ) { %>
+            <div class="col-12">
+              <div class="d-flex justify-content-between mt-1 mb-2">
+                <h5 class="mt-1"><%= `${trainers[i].first_name} ${trainers[i].last_name}` %></h5>
+                <a href="<%=`/trainers/${trainers[i].id}/book` %>" class="btn btn-primary btn-sm">Book now</a>
+              </div>
+              <% if(i !== trainers.length - 1) { %>
+                <hr>
+              <% } %>
+            </div>
+          <% } %>
+        </div>
+      <% } else { %>
+        There is nobody here.
+        <br>
+        It seems like everyone is busy now!
+      <% } %>
+    </div>
+    <div class="col-md-8">
+      <div id="calendar">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="trainerList" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="trainerListLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="trainerListLabel"></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="trainerListRow" class="row" style="overflow-y: scroll;max-height: 569px;">
+          <% for(let i = 0; i < 15; i++ ) { %>
+            <div class="col-12">
+              <div class="d-flex justify-content-between mt-1 mb-2">
+                <h5 class="mt-1">Nguyen van A</h5>
+                <button class="btn btn-primary btn-sm">Book now</button>
+              </div>
+              <% if(i !== 14) { %>
+                <hr>
+              <% } %>
+            </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
