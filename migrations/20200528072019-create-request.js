@@ -28,6 +28,12 @@ module.exports = {
           key: 'id'
         }
       },
+      book_at: {
+        type: Sequelize.DATE
+      },
+      accepted: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

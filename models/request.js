@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     trainer_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER
+    user_id: DataTypes.INTEGER,
+    accepted: DataTypes.BOOLEAN,
+    book_at: DataTypes.DATE
   }, {});
   Request.associate = function(models) {
     // associations can be defined here
