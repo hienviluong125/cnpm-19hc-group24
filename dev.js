@@ -1,3 +1,4 @@
+const { Op } = require('sequelize')
 const app = require('./app');
 const User = require('./models/index').User;
 const Request = require('./models/index').Request;
@@ -41,6 +42,7 @@ const seedUsers = async ({ seedAdmin }) => {
 }
 
 const seedRequest = async () => {
+  const sampleBool = [true, false];
   let memberIds = await User.findAll({ where: { role: ['member'] }, limit: 5, raw: true, order: Sequelize.random() });
   let trainerIds = await User.findAll({ where: { role: ['trainer'] }, limit: 5, raw: true, order: Sequelize.random() });
 
@@ -50,6 +52,8 @@ const seedRequest = async () => {
         title: faker.lorem.words(),
         content: faker.lorem.words(),
         user_id: mId.id,
+        book_at: faker.date.between('2020-06-01T00:00:00', '2020-06-30T00:00:00'),
+        accepted: sampleBool[faker.random.number(1)],
         trainer_id: tId.id
       });
     }
@@ -252,8 +256,8 @@ const seedPayment = async () => {
     }, raw: true, order: Sequelize.random(), limit: 1
   });
 
-  for(let mem of members) {
-    for(let fa of fas) {
+  for (let mem of members) {
+    for (let fa of fas) {
       Payment.create({
         amount: faker.finance.amount(),
         method: 'cash',
@@ -274,3 +278,14 @@ const seedPayment = async () => {
   await seedPayment();
 })();
 
+// (async function () {
+//   let trainers = await Request.findAll({raw: true});
+//   console.log({trainers})
+
+//   await Request.create({
+//     user_id: 1,
+//     trainer_id: 15,
+//     accepted: false,
+//     book_at: new Date('2020-06-06T00:00:00')
+//   });
+// })();
