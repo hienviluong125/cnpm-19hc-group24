@@ -10,6 +10,7 @@ const passport = require('passport');
 const passportLocalConfig = require('./config/passport-local')
 const session = require('express-session');
 const flash = require('connect-flash');
+const User = require('./models/index').User;
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
@@ -40,25 +41,41 @@ app.use(passport.session());
 
 //Passport config
 passportLocalConfig(passport);
+app.use(function(req,res,next) {
+  if(typeof req.user !== 'undefined') {
+    res.locals.user = req.user;
+  }
+
+  return next();
+})
+
+if(typeof process.env['FAKE_ADMIN'] !== 'undefined') {
+  app.use(async function (req, res, next) {
+    req.user = await User.findOne({ raw: true, where: { first_name: "Carmel" } });
+    // req.user = await User.findOne({ raw: true, where: { email: "nhanvientuvan@gmail.com" } });
+    res.locals.user = req.user;
+    return next();
+  });
+}
 
 app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/trainers', trainerRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', { layout: false});
 });
 
 module.exports = app;
