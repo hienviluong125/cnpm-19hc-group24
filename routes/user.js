@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const bcrypt = require('bcrypt');
 const User = require('./../models/index').User;
 const { check, validationResult } = require('express-validator');
 const emptyParamsBulder = require('./../helper/emptyParamsBuilder');
@@ -119,6 +120,74 @@ router.get('/sign-in', function (req, res, next) {
   res.render('users/sign-in', { layout, messages });
 });
 
+router.get('/profile', Authentication, async function (req, res, next) {
+  let errors = []
+  const messages = req.flash('messages');
+  const user = await User.findOne({ raw: true, where: { id: req.user.id } });
+  const { username, last_name, first_name } = user;
+  res.render('users/profile', { messages, errors, username, last_name, first_name });
+});
+
+const validateUpdateUserProfile = [
+  check('username').notEmpty().withMessage('Username cannot be blank'),
+  check('first_name').notEmpty().withMessage('First name cannot be blank'),
+  check('last_name').notEmpty().withMessage('Last name cannot be blank')
+]
+router.post('/profile', Authentication, validateUpdateUserProfile, async function (req, res, next) {
+  let params = req.body;
+  let messages = []
+  const { username, first_name, last_name } = req.body;
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    errors = errors.array().map(error => ({ msg: error.msg }));
+    return res.render('users/profile', { errors, username, first_name, last_name, messages });
+  }
+
+  const editUser = await User.findOne({ raw: true, where: { id: req.user.id } });
+
+  let isEditPassword = false;
+  if (params.current_password.length > 0 || params.password.length > 0 || params.password_confirmation.length > 0) {
+    isEditPassword = true;
+  }
+
+  if (isEditPassword) {
+    errors = errors.array();
+
+    //password fields cannot be blank
+    if (params.current_password.length <= 0)
+      errors = [...errors, { msg: 'Current password cannot be blank' }];
+    if (params.password.length <= 0)
+      errors = [...errors, { msg: 'New password cannot be blank' }];
+    if (params.password_confirmation.length <= 0)
+      errors = [...errors, { msg: 'New password confirmation cannot be blank' }];
+    if (errors.length > 0)
+      return res.render('users/profile', { errors, username, first_name, last_name, messages });
+
+    //compare new password and password confirmation
+    if (params.password !== params.password_confirmation) {
+      errors = [...errors, { msg: "New password does't match new password confirmation" }];
+      return res.render('users/profile', { errors, username, first_name, last_name, messages });
+    }
+
+    //check current password match password in database
+    const isMatchCurrentPassword = await bcrypt.compare(params.current_password, editUser.password);
+    if (!isMatchCurrentPassword) {
+      errors = [...errors, { msg: 'Current password is incorrect' }];
+      return res.render('users/profile', { errors, username, first_name, last_name, messages });
+    }
+
+    let pwd = await bcrypt.hash(params.password, 10);
+    params.password = pwd;
+    await User.update(params, { where: { id: req.user.id } });
+    req.flash('messages', [{ type: 'success', content: 'Update profile succesfully' }]);
+    return res.redirect('/users/profile');
+  }
+
+  await User.update({ username, first_name, last_name}, { where: { id: req.user.id } });
+  req.flash('messages', [{ type: 'success', content: 'Update profile succesfully' }]);
+  return res.redirect('/users/profile');
+})
+
 router.post('/sign-in', function (req, res, next) {
   passport.authenticate('local', {
     successRedirect: '/',
@@ -141,6 +210,6 @@ router.post('/sign-in', function (req, res, next) {
 router.get('/sign-out', Authentication, async function (req, res, next) {
   req.logout();
   res.redirect('/users/sign-in');
-})
+});
 
 module.exports = router;

@@ -13,6 +13,7 @@
                 <th>Email</th>
                 <th>First name</th>
                 <th>Last name</th>
+                <th>Gender</th>
                 <th>Role</th>
                 <th>Actions</th>
               </tr>
@@ -24,6 +25,7 @@
                 <td><%= user.email %></td>
                 <td><%= user.first_name %></td>
                 <td><%= user.last_name %></td>
+                <td><%= user.gender %></td>
                 <td><%= user.role %></td>
                 <td>
                   <a href="users/<%= user.id %>/edit" class="btn btn-info">Edit</a>
@@ -33,7 +35,7 @@
               <% }) %>
             </tbody>
           </table>
-          <ul class="pagination pagination-rounded float-right mt-3 mr-3">    
+          <ul class="pagination pagination-rounded float-right mt-3 mr-3">
             <li class="paginate_button page-item previous <%= userPagy.firstPage ? 'disabled' : '' %>" id="basic-datatable_previous">
               <a href="/users?page=<%= userPagy.prevPage %>" aria-controls="basic-datatable" data-dt-idx="0" tabindex="0" class="page-link">
                 <i class="mdi mdi-chevron-left"></i>
@@ -44,18 +46,17 @@
                 <a href="/users?page=<%= idx %>" aria-controls="basic-datatable" data-dt-idx="1" tabindex="0"
                 class="page-link"><%= idx %></a>
               </li>
-            <% } %>      
+            <% } %>
             <li class="paginate_button page-item next <%= userPagy.lastPage ? 'disabled' : '' %>" id="basic-datatable_next">
               <a href="/users?page=<%= userPagy.nextPage %>" aria-controls="basic-datatable" data-dt-idx="7" tabindex="0" class="page-link">
                 <i class="mdi mdi-chevron-right"></i>
               </a>
             </li>
-          </ul> 
-  
+          </ul>
+
         </div> <!-- end table-responsive-->
-        
+
       </div> <!-- end card body-->
     </div> <!-- end card -->
   </div><!-- end col-->
 </div>
-
