@@ -33,7 +33,7 @@
     } else if(user.role === 'member') {
       menuList = [
         { label: 'Book a trainer', link: '/trainers' },
-        { label: 'Booking History', link: '/users/booking-history' }
+        { label: 'Booking History', link: '/users/booking-histories' }
       ];
     } else if(user.role === 'financial_advisor') {
       menuList = [
@@ -46,8 +46,8 @@
       ];
     } else if(user.role === 'trainer') {
       menuList = [
-        { label: 'Booking Requests', link: '/trainers/booking-request' },
-        { label: 'Booking History', link: '/trainers/booking-history' }
+        { label: 'Booking Requests', link: '/trainers/booking-requests' },
+        { label: 'Booking History', link: '/trainers/booking-histories' }
       ];
     } else if(user.role === 'technician') {
       menuList = [

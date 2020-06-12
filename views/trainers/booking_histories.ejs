@@ -1,0 +1,35 @@
+<div class="row mt-2">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-4">Your booking histories</h4>
+        <div class="table-responsive-sm">
+          <table class="table table-centered mb-0">
+            <thead>
+              <tr>
+                <th>From member</th>
+                <th>Book at</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% histories.forEach(function(history){ %>
+              <tr>
+                <td><%= `${history.user.first_name} ${history.user.last_name}` %></td>
+                <td><%= moment(history.book_at).format('YYYY-MM-DD')%></td>
+                <td>
+                  <% if(history.accepted) { %>
+                    <span class="badge badge-success">Accepted</span></td>
+                  <% } else { %>
+                    <span class="badge badge-warning">Waiting</span></td>
+                  <% } %>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div> <!-- end table-responsive-->
+
+      </div> <!-- end card body-->
+    </div> <!-- end card -->
+  </div><!-- end col-->
+</div>
