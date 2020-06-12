@@ -14,13 +14,14 @@ const Payment = require('./models/index').Payment;
 const role_enums = ['consultant', 'member', 'financial_advisor', 'manager', 'trainer', 'technician']
 const seedUsers = async ({ seedAdmin }) => {
   let pwd = await bcrypt.hash('12345678', 10);
-
+  let rdGender = ['male', 'female'];
   if (seedAdmin) {
     await User.create({
       first_name: 'admin',
       last_name: 'gym manager',
       email: 'admin@gym.com',
       username: 'admin_gym',
+      gender: rdGender[faker.random.number(1)],
       password: pwd,
       role: 'admin',
     });
@@ -32,6 +33,7 @@ const seedUsers = async ({ seedAdmin }) => {
       first_name: faker.name.firstName(),
       last_name: faker.name.lastName(),
       email: faker.internet.email(),
+      gender: rdGender[faker.random.number(1)],
       username: faker.internet.userName(),
       password: pwd,
       role: role_enums[faker.random.number(5)],
@@ -268,24 +270,42 @@ const seedPayment = async () => {
   }
 }
 
+const seedUserWithRole = async () => {
+  const roles = ['consultant', 'member', 'financial_advisor', 'manager', 'trainer', 'technician']
+  const emails = ['nhanvientuvan@gmail.com', 'thanhvien@gmail.com', 'nhanvienketoan@gmail.com', 'nhanvienquanli@gmail.com', 'huanluyenvien@gmail.com', 'nhanvienkythuat@gmail.com']
+
+  let pwd = await bcrypt.hash('12345678', 10);
+
+  for (let i = 0; i < roles.length; i++) {
+    await User.create({
+      first_name: faker.name.firstName(),
+      last_name: faker.name.lastName(),
+      email: emails[i],
+      username: faker.internet.userName(),
+      gender: 'female',
+      password: pwd,
+      role: roles[i],
+    });
+  }
+}
+
 (async function () {
-  await seedUsers({ seedAdmin: true });
-  await seedDayOfWeeks();
-  await seedRequest();
-  await seedWorkShift();
-  await seedUserWorkShift();
-  await seedSalary();
-  await seedPayment();
+  // await seedUsers({ seedAdmin: true });
+  // await seedDayOfWeeks();
+  // await seedRequest();
+  // await seedWorkShift();
+  // await seedUserWorkShift();
+  // await seedSalary();
+  // await seedPayment();
+  // await seedUserWithRole();
+
+  let rs = await Request.findAll({
+    where: {
+      trainer_id: null,
+      accepted: false,
+    },
+    raw: true,
+  });
+
+  console.log({rs});
 })();
-
-// (async function () {
-//   let trainers = await Request.findAll({raw: true});
-//   console.log({trainers})
-
-//   await Request.create({
-//     user_id: 1,
-//     trainer_id: 15,
-//     accepted: false,
-//     book_at: new Date('2020-06-06T00:00:00')
-//   });
-// })();
