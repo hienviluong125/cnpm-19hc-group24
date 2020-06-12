@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "routes": "node listEndpoints.js"
+    "routes": "node listEndpoints.js",
+    "seed": "node dev.js"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",

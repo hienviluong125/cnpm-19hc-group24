@@ -2,6 +2,8 @@
   <%- include('./../shared/flash-message', { messages: messages }) %>
   <div class="row">
     <div class="col-md-4">
+      <h5>If you dont know who to choose, click here please</h5>
+      <button id="book-now-btn" class="btn btn-warning btn-lg font-weight-bold text-white" data-toggle="modal" data-target="#bookNow">Book Now !</button>
       <h4 class="mt-2 pt-1">Today's available trainers</h4>
       <% if(trainers.length > 0) { %>
         <div class="row bg-white p-2" style="margin-top: 38px;overflow-y: scroll;max-height: 569px;">
@@ -25,14 +27,10 @@
     </div>
     <div class="col-md-8">
       <div id="calendar">
-
       </div>
     </div>
   </div>
 </div>
-
-
-
 
 <div id="trainerList" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="trainerListLabel"
   aria-hidden="true">
@@ -59,6 +57,31 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="bookNow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bookNowLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="bookNowLabel">Book a mentor quickly</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/trainers/anonymous/booking">
+          <div class="form-group mb-3">
+            <label for="example-date">Date</label>
+            <input class="form-control" id="book-date" type="date" name="date">
+          </div>
+          <i>(*) Our trainers will contact you proactively!</i>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-success">Book !</button>
+            <button type="button" class="ml-1 btn btn-light" data-dismiss="modal">Close</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
