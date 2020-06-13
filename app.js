@@ -10,6 +10,7 @@ const passport = require('passport');
 const passportLocalConfig = require('./config/passport-local')
 const session = require('express-session');
 const flash = require('connect-flash');
+const moment = require('moment');
 const User = require('./models/index').User;
 
 const indexRouter = require('./routes/index');
@@ -39,20 +40,24 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.locals.moment = require('moment');
+
 //Passport config
 passportLocalConfig(passport);
-app.use(function(req,res,next) {
-  if(typeof req.user !== 'undefined') {
+app.use(function (req, res, next) {
+  if (typeof req.user !== 'undefined') {
     res.locals.user = req.user;
   }
 
   return next();
 })
 
-if(typeof process.env['FAKE_ADMIN'] !== 'undefined') {
+if (typeof process.env['FAKE_ADMIN'] !== 'undefined') {
   app.use(async function (req, res, next) {
-    req.user = await User.findOne({ raw: true, where: { first_name: "Carmel" } });
+    // req.user = await User.findOne({ raw: true, where: { first_name: "Shakira" } });
     // req.user = await User.findOne({ raw: true, where: { email: "nhanvientuvan@gmail.com" } });
+    // req.user = await User.findOne({ raw: true, where: { email: 'thanhvien@gmail.com' }});
+    req.user = await User.findOne({ raw: true, where: {email: 'huanluyenvien@gmail.com'} });
     res.locals.user = req.user;
     return next();
   });
@@ -75,7 +80,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error', { layout: false});
+  res.render('error', { layout: false });
 });
 
 module.exports = app;

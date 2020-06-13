@@ -11,7 +11,7 @@ const Authorization = require('./../middlewares/authorization');
 const pagy = require('./..//helper/pagy');
 const moment = require('moment');
 
-router.get('/', async function (req, res, next) {
+router.get('/', Authorization(['admin', 'member']), async function (req, res, next) {
   const messages = req.flash('messages');
   const start = new Date();
   start.setHours(0, 0, 0, 0);
@@ -47,7 +47,7 @@ router.get('/', async function (req, res, next) {
   res.render('trainers/index', { trainers: availableTrainers, messages });
 });
 
-router.get('/booking-requests', async function (req, res, next) {
+router.get('/booking-requests', Authorization(['admin', 'trainer']), async function (req, res, next) {
   const currentUser = req.user;
   const messages = req.flash('messages');
   const start = new Date();
@@ -80,6 +80,21 @@ router.get('/booking-requests', async function (req, res, next) {
   res.render('trainers/booking_requests', { requests, messages, anonymousRequests });
 });
 
+router.get('/booking-histories', Authorization(['admin', 'trainer']), async function (req, res, next) {
+  const currentUser = req.user;
+  const requests = await Request.findAll({
+    where: {
+      trainer_id: currentUser.id
+    },
+    include: [{
+      model: User,
+      as: 'user'
+    }]
+  });
+
+  res.render('trainers/booking_histories', { histories: requests })
+});
+
 router.get('/anonymous/requests', async function (req, res, next) {
   let bookDate = new Date();
 
@@ -109,7 +124,7 @@ router.get('/anonymous/requests', async function (req, res, next) {
   res.json({ requests });
 });
 
-router.post('/anonymous/booking', async function (req, res, next) {
+router.post('/anonymous/booking', Authorization(['admin', 'member']), async function (req, res, next) {
   const currentUser = req.user;
   let parsedDte = moment(req.body.date, 'YYYY-MM-DD').toDate();
 
@@ -148,9 +163,11 @@ router.post('/anonymous/booking', async function (req, res, next) {
   return res.redirect('/trainers')
 })
 
-router.get('/:id/accept', async function (req, res, next) {
+router.get('/:id/accept', Authorization(['admin', 'trainer']), async function (req, res, next) {
+  const currentUser = req.user;
   let request = await Request.findOne({ where: { id: req.params.id } });
   request.accepted = true;
+  request.trainer_id = currentUser.id;
   let result = await request.save();
 
   if (result) {
@@ -163,7 +180,7 @@ router.get('/:id/accept', async function (req, res, next) {
   res.redirect('/trainers/booking-requests')
 })
 
-router.get('/:id/book', async function (req, res, next) {
+router.get('/:id/book', Authorization(['admin', 'member']), async function (req, res, next) {
   const currentUser = req.user;
   const now = new Date();
   let bookDate = new Date();

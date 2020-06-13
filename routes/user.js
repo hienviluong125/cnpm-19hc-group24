@@ -3,11 +3,13 @@ const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const User = require('./../models/index').User;
+const Request = require('./../models/index').Request;
 const { check, validationResult } = require('express-validator');
 const emptyParamsBulder = require('./../helper/emptyParamsBuilder');
 const Authentication = require('./../middlewares/authentication');
 const Authorization = require('./../middlewares/authorization');
 const pagy = require('./..//helper/pagy');
+const { request } = require('express');
 
 router.get('/', Authentication, Authorization(['admin']), async function (req, res, next) {
   const messages = req.flash('messages');
@@ -183,10 +185,25 @@ router.post('/profile', Authentication, validateUpdateUserProfile, async functio
     return res.redirect('/users/profile');
   }
 
-  await User.update({ username, first_name, last_name}, { where: { id: req.user.id } });
+  await User.update({ username, first_name, last_name }, { where: { id: req.user.id } });
   req.flash('messages', [{ type: 'success', content: 'Update profile succesfully' }]);
   return res.redirect('/users/profile');
 })
+
+router.get('/booking-histories', Authorization(['admin', 'member']), async function (req, res, next) {
+  const currentUser = req.user;
+  const requests = await Request.findAll({
+    where: {
+      user_id: currentUser.id
+    },
+    include: [{
+      model: User,
+      as: 'trainer'
+    }]
+  });
+
+  res.render('users/booking_histories', { histories: requests })
+});
 
 router.post('/sign-in', function (req, res, next) {
   passport.authenticate('local', {
