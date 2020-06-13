@@ -31,6 +31,9 @@ module.exports = {
       book_at: {
         type: Sequelize.DATE
       },
+      accepted_at: {
+        type: Sequelize.DATE
+      },
       accepted: {
         type: Sequelize.BOOLEAN
       },

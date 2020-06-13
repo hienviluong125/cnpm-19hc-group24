@@ -29,6 +29,12 @@ module.exports = {
         type: Sequelize.ENUM,
         values: ['admin', 'consultant', 'member', 'financial_advisor', 'manager', 'trainer', 'technician']
       },
+      phone: {
+        type: Sequelize.STRING
+      },
+      address: {
+        type: Sequelize.STRING
+      },
       gender: {
         type: Sequelize.STRING
       },
