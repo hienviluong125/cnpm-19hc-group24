@@ -1,0 +1,18 @@
+<ul class="pagination pagination-rounded float-right mt-3 mr-3">
+  <li class="paginate_button page-item previous <%= resourcePagy.firstPage ? 'disabled' : '' %>" id="basic-datatable_previous">
+    <a href="/<%= resource %>?page=<%= resourcePagy.prevPage %>" aria-controls="basic-datatable" data-dt-idx="0" tabindex="0" class="page-link">
+      <i class="mdi mdi-chevron-left"></i>
+    </a>
+  </li>
+  <% for(let idx = 1; idx <= resourcePagy.totalPage; idx++) { %>
+    <li class="paginate_button page-item <%= resourcePagy.currentPage === idx ? 'active' : '' %>">
+      <a href="/<%= resource %>?page=<%= idx %>" aria-controls="basic-datatable" data-dt-idx="1" tabindex="0"
+      class="page-link"><%= idx %></a>
+    </li>
+  <% } %>
+  <li class="paginate_button page-item next <%= resourcePagy.lastPage ? 'disabled' : '' %>" id="basic-datatable_next">
+    <a href="/<%= resource %>?page=<%= resourcePagy.nextPage %>" aria-controls="basic-datatable" data-dt-idx="7" tabindex="0" class="page-link">
+      <i class="mdi mdi-chevron-right"></i>
+    </a>
+  </li>
+</ul>

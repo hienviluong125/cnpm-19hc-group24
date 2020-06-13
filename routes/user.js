@@ -9,14 +9,13 @@ const emptyParamsBulder = require('./../helper/emptyParamsBuilder');
 const Authentication = require('./../middlewares/authentication');
 const Authorization = require('./../middlewares/authorization');
 const pagy = require('./..//helper/pagy');
-const { request } = require('express');
 
 router.get('/', Authentication, Authorization(['admin']), async function (req, res, next) {
   const messages = req.flash('messages');
   const page = typeof (req.query.page) !== 'undefined' ? parseInt(req.query.page) : 1;
   let userPagy = await pagy({ model: User, queryOption: {}, limit: 10, page: page })
 
-  return res.render('users/index', { users: userPagy.data, userPagy, messages });
+  return res.render('users/index', { users: userPagy.data, resourcePagy: userPagy, messages, resource: 'users' });
 });
 
 router.get('/new', Authentication, Authorization(['admin']), async function (req, res, next) {

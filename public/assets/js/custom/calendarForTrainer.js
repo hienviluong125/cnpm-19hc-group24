@@ -121,6 +121,10 @@
   CalendarApp.prototype.init = function () {
 
     var anonymousRequests = $(this.$calendar).data('requests');
+    if(typeof anonymousRequests === 'undefined' || !anonymousRequests) {
+      return;
+    }
+
     anonymousRequests = anonymousRequests.map(rq => {
       let date = new Date(rq.book_at);
       date.setHours(0, 0, 0, 0);
