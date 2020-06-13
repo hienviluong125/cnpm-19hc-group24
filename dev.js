@@ -10,6 +10,9 @@ const WorkShift = require('./models/index').WorkShift;
 const UserWorkShift = require('./models/index').UserWorkShift;
 const Salary = require('./models/index').Salary;
 const Payment = require('./models/index').Payment;
+const Package = require('./models/index').Package;
+const UserPackage = require('./models/index').UserPackage;
+const IncomeAndExpense = require('./models/index').IncomeAndExpense;
 
 const role_enums = ['consultant', 'member', 'financial_advisor', 'manager', 'trainer', 'technician']
 const seedUsers = async ({ seedAdmin }) => {
@@ -17,6 +20,8 @@ const seedUsers = async ({ seedAdmin }) => {
   let rdGender = ['male', 'female'];
   if (seedAdmin) {
     await User.create({
+      address: faker.address.streetAddress(),
+      phone: faker.phone.phoneNumber(),
       first_name: 'admin',
       last_name: 'gym manager',
       email: 'admin@gym.com',
@@ -30,6 +35,8 @@ const seedUsers = async ({ seedAdmin }) => {
   let n = 30;
   for (let i = 0; i < n; i++) {
     await User.create({
+      address: faker.address.streetAddress(),
+      phone: faker.phone.phoneNumber(),
       first_name: faker.name.firstName(),
       last_name: faker.name.lastName(),
       email: faker.internet.email(),
@@ -55,6 +62,7 @@ const seedRequest = async () => {
         content: faker.lorem.words(),
         user_id: mId.id,
         book_at: faker.date.between('2020-06-01T00:00:00', '2020-06-30T00:00:00'),
+        accepted_at: faker.date.between('2020-06-01T00:00:00', '2020-06-30T00:00:00'),
         accepted: sampleBool[faker.random.number(1)],
         trainer_id: tId.id
       });
@@ -278,6 +286,8 @@ const seedUserWithRole = async () => {
 
   for (let i = 0; i < roles.length; i++) {
     await User.create({
+      address: faker.address.streetAddress(),
+      phone: faker.phone.phoneNumber(),
       first_name: faker.name.firstName(),
       last_name: faker.name.lastName(),
       email: emails[i],
@@ -289,23 +299,51 @@ const seedUserWithRole = async () => {
   }
 }
 
-(async function () {
-  // await seedUsers({ seedAdmin: true });
-  // await seedDayOfWeeks();
-  // await seedRequest();
-  // await seedWorkShift();
-  // await seedUserWorkShift();
-  // await seedSalary();
-  // await seedPayment();
-  // await seedUserWithRole();
-
-  let rs = await Request.findAll({
-    where: {
-      trainer_id: null,
-      accepted: false,
-    },
-    raw: true,
+const seedPackage = async () => {
+  await Package.create({
+    title: 'Gói phổ thông',
+    description: 'Gói tập phổ thông',
+    amount: 200
   });
 
-  console.log({rs});
+  let cb_p = await Package.create({
+    title: 'Gói cơ bản',
+    description: 'Gói tập cơ bản hỗ trợ tham gia các lớp học gym',
+    amount: 500
+  });
+
+  await Package.create({
+    title: 'Gói cao cấp',
+    description: 'Gói tập cao cấp',
+    amount: 1000
+  });
+
+  let user = await User.findOne({where: {email: 'thanhvien@gmail.com'}});
+  await UserPackage.create({
+    user_id: user.id,
+    package_id: cb_p.id
+  });
+}
+
+const seedIncomeAndExpense = async () => {
+  for(let i = 0; i < 10;i++){
+    await IncomeAndExpense.create({
+      in_amount: faker.finance.amount(),
+      out_amount: faker.finance.amount(),
+      date: faker.date.between('2020-06-01T00:00:00', '2020-06-30T00:00:00'),
+    });
+  }
+}
+
+(async function () {
+  await seedUsers({ seedAdmin: true });
+  await seedDayOfWeeks();
+  await seedRequest();
+  await seedWorkShift();
+  await seedUserWorkShift();
+  await seedSalary();
+  await seedPayment();
+  await seedUserWithRole();
+  await seedPackage();
+  await seedIncomeAndExpense();
 })();
