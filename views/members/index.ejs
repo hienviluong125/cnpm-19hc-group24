@@ -11,12 +11,12 @@
               <tr>
                 <th>Username</th>
                 <th>Email</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Gender</th>
-                <th>Phoner</th>
-                <th>Address</th>
-                <th>Actions</th>
+                <th>Họ và đệm</th>
+                <th>Tên</th>
+                <th>Giới tính</th>
+                <th>SĐT</th>
+                <th>Địa chỉ</th>
+                <th>Thao tác</th>
               </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                 <td><%= user.phone %></td>
                 <td><%= user.address %></td>
                 <td>
-                  <a href="members/<%= user.id %>/packages" class="btn btn-info">See packages</a>
+                  <a href="members/<%= user.id %>/packages" class="btn btn-info">Gói tập</a>
                 </td>
               </tr>
               <% }) %>
