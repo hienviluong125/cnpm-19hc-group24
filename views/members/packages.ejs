@@ -1,0 +1,39 @@
+
+
+
+<div class="row mt-2">
+  <div class="col-12">
+    <%- include('./../shared/flash-message', { messages: messages }) %>
+  </div>
+  <div class="text-center col-12 mb-2">
+    <h1 >Các gói tập</h1>
+    <i>Thêm gói tập cho thành viên
+      <strong class="text-primary"><%= member.first_name %> <%= member.last_name %></strong>
+    </i>
+  </div>
+  <%  packages.forEach(function(package){ %>
+    <% let isChecked = userPackages.filter(up => up.package_id === package.id).length > 0 %>
+    <div class="col-4">
+      <div class="card d-block">
+        <div class="card-checkbox-thumb <%= isChecked ? 'dp' : '' %>" data-id="<%= package.id%>">
+          <i class="mdi mdi-check-circle-outline card-checkbox-thumb-icon <%= isChecked ? 'dp' : '' %>"></i>
+          <img class="card-img-top card-checkbox-thumb-img" src="/assets/images/courses/<%= package.id %>.jpg" alt="Card image cap">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><%= package.title %></h5>
+            <p class="card-text"><%= package.description %></p>
+            <a href="javascript: void(0);" class="btn btn-primary">Xem chi tiết</a>
+        </div> <!-- end card-body-->
+      </div>
+    </div>
+  <% }) %>
+  <form method="POST" action="/members/<%= userId %>/packages" class="col-md-12">
+    <%  packages.forEach(function(package){ %>
+      <% let isChecked = userPackages.filter(up => up.package_id === package.id).length > 0 %>
+      <input type="checkbox" class="d-none" id="package-<%= package.id %>" name="<%= package.id %>" class=""  <%= isChecked ? 'checked' : '' %>>
+    <% }) %>
+    <div class="w-100 form-group mb-3">
+      <button class="w-100 btn-lg btn btn-primary">Cập nhật</button>
+    </div>
+  </form>
+</div>

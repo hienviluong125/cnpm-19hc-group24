@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Hyper - Responsive Bootstrap 4 Admin Dashboard</title>
+  <title>GYM24 - Quản lí phòng gym</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
   <meta content="Coderthemes" name="author" />
@@ -27,36 +27,36 @@
     var menuList = []
     if(user.role === 'consultant') {
       menuList = [
-        { label: 'Member account', link: '/members' },
-        { label: 'Package', link: '/packages' }
+        { label: 'Tài khoản thành viên', link: '/members' },
+        { label: 'Gói tập', link: '/packages' }
       ];
     } else if(user.role === 'member') {
       menuList = [
-        { label: 'Book a trainer', link: '/trainers' },
-        { label: 'Booking History', link: '/users/booking-histories' }
+        { label: 'Đặt huấn luyện viện', link: '/trainers' },
+        { label: 'Lịch sử đặt', link: '/users/booking-histories' }
       ];
     } else if(user.role === 'financial_advisor') {
       menuList = [
-        { label: 'Salary management', link: '/salaries' },
-        { label: 'Income and expenses', link: '/income-and-expenses' }
+        { label: 'Quản lí tiền lương', link: '/salaries' },
+        { label: 'Quản lí thu chi', link: '/income-and-expenses' }
       ];
     } else if(user.role === 'manager') {
       menuList = [
-        { label: 'Workshift management', link: '/members' }
+        { label: 'Quản lí ca làm', link: '/members' }
       ];
     } else if(user.role === 'trainer') {
       menuList = [
-        { label: 'Booking Requests', link: '/trainers/booking-requests' },
-        { label: 'Booking History', link: '/trainers/booking-histories' }
+        { label: 'Yêu cầu luyện tập', link: '/trainers/booking-requests' },
+        { label: 'Lịch sử yêu cầu', link: '/trainers/booking-histories' }
       ];
     } else if(user.role === 'technician') {
       menuList = [
-        { label: 'Equipment management', link: '/equipments' }
+        { label: 'Quản lí máy móc', link: '/equipments' }
       ];
     } else if(user.role === 'admin') {
       menuList = [
-        { label: 'User management', link: '/users' },
-        { label: 'Course management', link: '/courses' }
+        { label: 'Quản lí tài khoản', link: '/users' },
+        { label: 'Quản lí khoá học', link: '/courses' }
       ];
     }
   %>

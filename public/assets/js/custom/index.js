@@ -31,4 +31,18 @@ $(document).ready(function () {
       $('#book-date').val(formattedDate);
     }
   })
+
+  $('.card-checkbox-thumb').on('click', function(e) {
+    let packageId = e.currentTarget.dataset.id;
+    let checkboxDom = $('#package-' + packageId);
+    if(checkboxDom.prop("checked")) {
+      $(this).removeClass('dp')
+      $(this).find('.card-checkbox-thumb-icon').removeClass('dp')
+    } else {
+      $(this).addClass('dp')
+      $(this).find('.card-checkbox-thumb-icon').addClass('dp')
+    }
+    checkboxDom.prop("checked", !checkboxDom.prop("checked"));
+
+  })
 });

@@ -3,19 +3,20 @@
     <div class="card">
       <div class="card-body">
         <%- include('./../shared/flash-message', { messages: messages }) %>
-        <h4 class="header-title">User management</h4>
-        <a href="/users/new" class="btn btn-primary mb-2">Add an user</a>
+        <h4 class="header-title">Member management</h4>
+        <a href="/members/new" class="btn btn-primary mb-2">Create member account</a>
         <div class="table-responsive-sm">
           <table class="table table-centered mb-0">
             <thead>
               <tr>
                 <th>Username</th>
                 <th>Email</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Gender</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th>Họ và đệm</th>
+                <th>Tên</th>
+                <th>Giới tính</th>
+                <th>SĐT</th>
+                <th>Địa chỉ</th>
+                <th>Thao tác</th>
               </tr>
             </thead>
             <tbody>
@@ -26,10 +27,10 @@
                 <td><%= user.first_name %></td>
                 <td><%= user.last_name %></td>
                 <td><%= user.gender %></td>
-                <td><%= user.role %></td>
+                <td><%= user.phone %></td>
+                <td><%= user.address %></td>
                 <td>
-                  <a href="users/<%= user.id %>/edit" class="btn btn-info">Edit</a>
-                  <a href="users/<%= user.id %>/delete" class="confirm-dialog btn btn-danger">Delete</a>
+                  <a href="members/<%= user.id %>/packages" class="btn btn-info">Gói tập</a>
                 </td>
               </tr>
               <% }) %>
@@ -37,7 +38,6 @@
           </table>
           <%- include('./../shared/pagination', { resource, resourcePagy }) %>
         </div> <!-- end table-responsive-->
-
       </div> <!-- end card body-->
     </div> <!-- end card -->
   </div><!-- end col-->
