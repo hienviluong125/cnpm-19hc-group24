@@ -8,6 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      date: {
+        type: Sequelize.DATE
+      },
+      comment: {
+        type: Sequelize.STRING
+      },
       amount: {
         type: Sequelize.DECIMAL
       },

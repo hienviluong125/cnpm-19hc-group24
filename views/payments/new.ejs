@@ -1,0 +1,45 @@
+<div class="row mt-2">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Create payment</h4>
+        <%- include('./../shared/errors', { errors: errors}) %>
+        <div class="row">
+          <div class="col-lg-6">
+            <form method="POST" action="/payments">
+
+              <div class="form-group mb-3">
+                <label for="comment">Comment</label>
+                <input name="comment" type="text" id="comment" class="form-control" value="<%= comment %>">
+              </div>
+
+              <div class="form-group mb-3">
+                <label>Choose user</label>
+                <select name="user_id" class="form-control select2" data-toggle="select2">
+                  <option <%= user_id == '' ? 'selected': '' %>  disabled value="">Select user</option>
+                  <% users.forEach(function(user){ %>
+                    <option <%= user_id == user.id ? 'selected' : '' %> value="<%= user.id %>"><%= user.first_name %> <%= user.last_name %></option>
+                  <% }) %>
+                </select>
+              </div>
+
+              <div class="form-group mb-3">
+                <label>Choose date</label>
+                <input name="date" type="text" class="form-control date" id="birthdatepicker" data-toggle="date-picker" data-single-date-picker="true" value="<%= date %>">
+              </div>
+
+              <div class="form-group mb-3">
+                <label>Amount</label>
+                <input name="amount" type="text" class="form-control" data-toggle="input-mask" data-mask-format="000,000,000,000,000.00" data-reverse="true" value="<%= amount %>">
+              </div>
+              <div class="form-group mb-3">
+                <button class="btn btn-success">Submit</button>
+              </div>
+            </form>
+          </div> <!-- end col -->
+        </div>
+        <!-- end row-->
+      </div> <!-- end card-body -->
+    </div> <!-- end card -->
+  </div><!-- end col -->
+</div>
