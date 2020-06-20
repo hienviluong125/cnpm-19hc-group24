@@ -27,27 +27,28 @@
     var menuList = []
     if(user.role === 'consultant') {
       menuList = [
-        { label: 'Tài khoản thành viên', link: '/members' },
-        { label: 'Gói tập', link: '/packages' }
+        { label: 'Member Management', link: '/members' },
+        { label: 'Packages', link: '/packages' }
       ];
     } else if(user.role === 'member') {
       menuList = [
-        { label: 'Đặt huấn luyện viện', link: '/trainers' },
-        { label: 'Lịch sử đặt', link: '/users/booking-histories' }
+        { label: 'Book A Trainer', link: '/trainers' },
+        { label: 'Booking History', link: '/users/booking-histories' }
       ];
     } else if(user.role === 'financial_advisor') {
       menuList = [
-        { label: 'Quản lí tiền lương', link: '/salaries' },
-        { label: 'Quản lí thu chi', link: '/income-and-expenses' }
+        { label: 'Salary Management', link: '/salaries' },
+        { label: 'Payment Management', link: '/payments' },
+        { label: 'Income And Expenses', link: '/income-and-expenses' }
       ];
     } else if(user.role === 'manager') {
       menuList = [
-        { label: 'Quản lí ca làm', link: '/members' }
+        { label: 'Work-shift Management', link: '/members' }
       ];
     } else if(user.role === 'trainer') {
       menuList = [
-        { label: 'Yêu cầu luyện tập', link: '/trainers/booking-requests' },
-        { label: 'Lịch sử yêu cầu', link: '/trainers/booking-histories' }
+        { label: 'Training Requests', link: '/trainers/booking-requests' },
+        { label: 'Booking History', link: '/trainers/booking-histories' }
       ];
     } else if(user.role === 'technician') {
       menuList = [
@@ -84,8 +85,6 @@
           <% menuList.forEach(function(item) { %>
             <li class="side-nav-item">
               <a href="<%= item.link %>" class="side-nav-link">
-                <!-- <i class="dripicons-meter"></i> -->
-                <!-- <span class="badge badge-success float-right">7</span> -->
                 <span><%= item.label %></span>
               </a>
             </li>
