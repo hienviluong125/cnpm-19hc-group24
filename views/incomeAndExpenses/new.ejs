@@ -1,0 +1,35 @@
+<div class="row mt-2">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Create Income and Expense Record</h4>
+        <%- include('./../shared/errors', { errors: errors}) %>
+        <div class="row">
+          <div class="col-lg-6">
+            <form method="POST" action="/income-and-expenses">
+              <div class="form-group mb-3">
+                <label for="in_amount">Income Amount</label>
+                <input name="in_amount" type="text" class="form-control" data-toggle="input-mask" data-mask-format="000,000,000,000,000.00" data-reverse="true" value="<%= in_amount %>">
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="out_amount">Expense Amount</label>
+                <input name="out_amount" type="text" class="form-control" data-toggle="input-mask" data-mask-format="000,000,000,000,000.00" data-reverse="true" value="<%= out_amount %>">
+              </div>
+
+              <div class="form-group mb-3">
+                <label>Choose date</label>
+                <input name="date" type="text" class="form-control date" id="birthdatepicker" data-toggle="date-picker" data-single-date-picker="true" value="<%= date %>">
+              </div>
+
+              <div class="form-group mb-3">
+                <button class="btn btn-success">Submit</button>
+              </div>
+            </form>
+          </div> <!-- end col -->
+        </div>
+        <!-- end row-->
+      </div> <!-- end card-body -->
+    </div> <!-- end card -->
+  </div><!-- end col -->
+</div>

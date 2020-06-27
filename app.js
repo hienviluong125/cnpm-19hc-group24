@@ -18,6 +18,7 @@ const userRouter = require('./routes/user');
 const trainerRouter = require('./routes/trainer');
 const memberRouter = require('./routes/member');
 const paymentRouter = require('./routes/payment');
+const incomeAndExpenseRouter = require('./routes/incomeAndExpense');
 
 const app = express();
 
@@ -71,6 +72,7 @@ app.use('/users', userRouter);
 app.use('/trainers', trainerRouter);
 app.use('/members', memberRouter);
 app.use('/payments', paymentRouter);
+app.use('/income-and-expenses', incomeAndExpenseRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

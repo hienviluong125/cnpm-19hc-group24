@@ -13,6 +13,7 @@ const Payment = require('./models/index').Payment;
 const Package = require('./models/index').Package;
 const UserPackage = require('./models/index').UserPackage;
 const IncomeAndExpense = require('./models/index').IncomeAndExpense;
+const Equipment = require('./models/index').Equipment;
 
 const role_enums = ['consultant', 'member', 'financial_advisor', 'manager', 'trainer', 'technician']
 const seedUsers = async ({ seedAdmin }) => {
@@ -257,13 +258,13 @@ const seedPayment = async () => {
   let members = await User.findAll({
     where: {
       role: ['member']
-    }, raw: true, order: Sequelize.random()
+    }, raw: true, order: Sequelize.random(), limit: 10
   });
 
   let fas = await User.findAll({
     where: {
       role: ['financial_advisor']
-    }, raw: true, order: Sequelize.random(), limit: 1
+    }, raw: true, order: Sequelize.random(), limit: 10
   });
 
   for (let mem of members) {
@@ -271,6 +272,8 @@ const seedPayment = async () => {
       Payment.create({
         amount: faker.finance.amount(),
         method: 'cash',
+        comment: faker.lorem.sentence(),
+        date: faker.date.between('2020-06-01T00:00:00', '2020-06-30T00:00:00'),
         user_id: mem.id,
         staff_id: fa.id
       });
@@ -335,15 +338,28 @@ const seedIncomeAndExpense = async () => {
   }
 }
 
+const seedEquipment = async () => {
+  let equips =["Squat Rack", "Barbells", "Bench Press", "Incline Bench Press", "Hammer Strength Machine", "Cables And Pulleys", "Dumbbells", "Pullup Bar"]
+  for(let i = 0; i < equips.length; i++){
+    await Equipment.create({
+      quantity: faker.random.number(100),
+      name: equips[i]
+    });
+  }
+}
+
 (async function () {
-  await seedUsers({ seedAdmin: true });
-  await seedDayOfWeeks();
-  await seedRequest();
-  await seedWorkShift();
-  await seedUserWorkShift();
-  await seedSalary();
-  await seedPayment();
-  await seedUserWithRole();
-  await seedPackage();
-  await seedIncomeAndExpense();
+  // await seedUsers({ seedAdmin: true });
+  // await seedDayOfWeeks();
+  // await seedRequest();
+  // await seedWorkShift();
+  // await seedUserWorkShift();
+  // await seedSalary();
+  // await seedPayment();
+  // await seedUserWithRole();
+  // await seedPackage();
+  // await seedIncomeAndExpense();
+  // await seedEquipment();
+  // let payments = await Payment.destroy({ where: { comment: 'Hihihhooh'}});
+  // console.log({payments})
 })();

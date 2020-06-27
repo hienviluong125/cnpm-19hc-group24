@@ -11,8 +11,6 @@ const Authentication = require('./../middlewares/authentication');
 const Authorization = require('./../middlewares/authorization');
 const pagy = require('./..//helper/pagy');
 const { paymentPdf } = require('./../helper/pdfmakeHelper');
-// const PdfPrinter = require('pdfmake');
-// const fs = require('fs');
 
 router.get('/', Authentication, Authorization(['admin', 'financial_advisor']), async function (req, res, next) {
   const messages = req.flash('messages');
