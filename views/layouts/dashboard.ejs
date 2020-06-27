@@ -28,7 +28,7 @@
     if(user.role === 'consultant') {
       menuList = [
         { label: 'Member Management', link: '/members' },
-        { label: 'Packages', link: '/packages' }
+        { label: 'Packages', link: '/dashboard/packages' }
       ];
     } else if(user.role === 'member') {
       menuList = [
@@ -52,12 +52,12 @@
       ];
     } else if(user.role === 'technician') {
       menuList = [
-        { label: 'Quản lí máy móc', link: '/equipments' }
+        { label: 'Equipment Management', link: '/equipments' }
       ];
     } else if(user.role === 'admin') {
       menuList = [
-        { label: 'Quản lí tài khoản', link: '/users' },
-        { label: 'Quản lí khoá học', link: '/courses' }
+        { label: 'User', link: '/users' },
+        { label: 'Courses', link: '/courses' }
       ];
     }
   %>

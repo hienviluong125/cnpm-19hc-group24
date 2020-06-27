@@ -6,8 +6,8 @@
     <%- include('./../shared/flash-message', { messages: messages }) %>
   </div>
   <div class="text-center col-12 mb-2">
-    <h1 >Các gói tập</h1>
-    <i>Thêm gói tập cho thành viên
+    <h1 >Packages</h1>
+    <i>Add or remove packages for
       <strong class="text-primary"><%= member.first_name %> <%= member.last_name %></strong>
     </i>
   </div>
@@ -22,7 +22,7 @@
         <div class="card-body">
             <h5 class="card-title"><%= package.title %></h5>
             <p class="card-text"><%= package.description %></p>
-            <a href="javascript: void(0);" class="btn btn-primary">Xem chi tiết</a>
+            <a href="/packages/<%= package.id %>" class="btn btn-primary">Detail</a>
         </div> <!-- end card-body-->
       </div>
     </div>
@@ -33,7 +33,7 @@
       <input type="checkbox" class="d-none" id="package-<%= package.id %>" name="<%= package.id %>" class=""  <%= isChecked ? 'checked' : '' %>>
     <% }) %>
     <div class="w-100 form-group mb-3">
-      <button class="w-100 btn-lg btn btn-primary">Cập nhật</button>
+      <button class="w-100 btn-lg btn btn-primary">Update</button>
     </div>
   </form>
 </div>

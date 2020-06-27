@@ -1,0 +1,24 @@
+
+
+
+<div class="row mt-2">
+  <div class="col-12">
+  </div>
+  <div class="text-center col-12 mb-2">
+    <h1 >Packages</h1>
+  </div>
+  <%  packages.forEach(function(package){ %>
+    <div class="col-4">
+      <div class="card d-block">
+        <div class="">
+          <img class="card-img-top card-checkbox-thumb-img" src="/assets/images/courses/<%= package.id %>.jpg" alt="Card image cap">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><%= package.title %></h5>
+            <p class="card-text"><%= package.description %></p>
+            <a href="/packages/<%= package.id %>" class="btn btn-primary">Detail</a>
+        </div> <!-- end card-body-->
+      </div>
+    </div>
+  <% }) %>
+</div>
