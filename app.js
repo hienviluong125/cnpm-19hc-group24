@@ -21,10 +21,9 @@ const paymentRouter = require('./routes/payment');
 const incomeAndExpenseRouter = require('./routes/incomeAndExpense');
 const workshiftRouter = require('./routes/workshift');
 const equipmentRouter = require('./routes/equipment');
-
+const salaryRouter = require('./routes/salary');
 
 const app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -61,7 +60,7 @@ app.use(function (req, res, next) {
 if (typeof process.env['FAKE_ADMIN'] !== 'undefined') {
   app.use(async function (req, res, next) {
     // req.user = await User.findOne({raw: true, where: {email: 'admin@gym.com'}});
-    // req.user = await User.findOne({raw: true, where: {email: 'nhanvienkythuat@gmail.com'}});
+    req.user = await User.findOne({raw: true, where: {email: 'nhanvienkythuat@gmail.com'}});
     // req.user = await User.findOne({ raw: true, where: { email: "nhanvientuvan@gmail.com" } });
     // req.user = await User.findOne({ raw: true, where: { email: "nhanvienketoan@gmail.com" } });
     // req.user = await User.findOne({ raw: true, where: { email: "nhanvienquanli@gmail.com" } });
@@ -80,6 +79,7 @@ app.use('/payments', paymentRouter);
 app.use('/income-and-expenses', incomeAndExpenseRouter);
 app.use('/workshifts', workshiftRouter);
 app.use('/equipments', equipmentRouter);
+app.use('/salaries', salaryRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Salary.associate = function(models) {
     // associations can be defined here
+    Salary.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
   };
   return Salary;
 };
