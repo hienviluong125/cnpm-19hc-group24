@@ -1,0 +1,42 @@
+<div class="row mt-2">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Add an salary record for user</h4>
+        <%- include('./../shared/errors', { errors: errors}) %>
+        <div class="row">
+          <div class="col-lg-6">
+            <form method="POST" action="/salaries/<%= id %>/edit">
+              <div class="form-group mb-3">
+                <label>Choose user</label>
+                <select disabled class="form-control select2" data-toggle="select2">
+                  <option <%= user_id == '' ? 'selected': '' %>  disabled value="">Select user</option>
+                  <% users.forEach(function(user){ %>
+                    <option <%= user_id == user.id ? 'selected' : '' %> value="<%= user.id %>"><%= user.first_name %> <%= user.last_name %></option>
+                  <% }) %>
+                </select>
+              </div>
+
+              <input type="hidden" name="user_id" value="<%= user_id %>">
+
+              <div class="form-group mb-3">
+                <label for="amount">Amount</label>
+                <input name="amount" type="text" class="form-control" data-toggle="input-mask" data-mask-format="000,000,000,000,000.00" data-reverse="true" value="<%= amount %>">
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="label">Label</label>
+                <input name="label" type="text" id="label" class="form-control" value="<%= label %>">
+              </div>
+
+              <div class="form-group mb-3">
+                <button class="btn btn-success">Submit</button>
+              </div>
+            </form>
+          </div> <!-- end col -->
+        </div>
+        <!-- end row-->
+      </div> <!-- end card-body -->
+    </div> <!-- end card -->
+  </div><!-- end col -->
+</div>

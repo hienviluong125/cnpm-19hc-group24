@@ -78,14 +78,10 @@ router.post('/:id/edit', Authentication, Authorization(['admin', 'technician']),
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
     errors = errors.array().map(error => ({ msg: error.msg }));
-    return res.render('users/edit', { errors, name, description, quantity, id: req.params.id });
+    return res.render('equipments/edit', { errors, name, description, quantity, id: req.params.id });
   }
   try {
     const equipment = await Equipment.findOne({ where: { id: req.params.id } });
-    if (equipment && equipment.role === 'admin' && params.role !== 'admin') {
-      errors = [{ msg: 'Cannot change role of admin' }]
-      return res.render('equipments/edit', { errors, name, description, quantity, id: req.params.id });
-    }
     await Equipment.update(params, { where: { id: req.params.id } });
     req.flash('messages', [{ type: 'success', content: 'equipment updated successfully' }]);
     return res.redirect('/equipments');
