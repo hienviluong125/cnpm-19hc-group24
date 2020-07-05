@@ -349,17 +349,15 @@ const seedEquipment = async () => {
 }
 
 (async function () {
-  // await seedUsers({ seedAdmin: true });
-  // await seedDayOfWeeks();
-  // await seedRequest();
-  // await seedWorkShift();
-  // await seedUserWorkShift();
-  // await seedSalary();
-  // await seedPayment();
-  // await seedUserWithRole();
-  // await seedPackage();
-  // await seedIncomeAndExpense();
-  // await seedEquipment();
-  // let payments = await Payment.destroy({ where: { comment: 'Hihihhooh'}});
-  // console.log({payments})
+  await seedUsers({ seedAdmin: true });
+  await seedDayOfWeeks();
+  await seedRequest();
+  await seedWorkShift();
+  await seedUserWorkShift();
+  await seedSalary();
+  await seedPayment();
+  await seedUserWithRole();
+  await seedPackage();
+  await seedIncomeAndExpense();
+  await seedEquipment();
 })();

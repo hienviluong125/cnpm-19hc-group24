@@ -22,8 +22,12 @@ how to install and init database ?
 how to run project ?
 - npm run start
 - visit localhost:3000
-- admin account:
-- username: admin@test.com
+
+how to run seed database ?
+- npm run seed
+
+admin account:
+- username: admin@gym.com
 - password: 12345678
 
 how to list routers ?
