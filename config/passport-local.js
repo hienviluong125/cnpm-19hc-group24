@@ -5,21 +5,21 @@ const User = require('./../models/index').User;
 module.exports = function (passport) {
   passport.use(new localStrategy({ usernameField: 'email' },
     (email, password, done) => {
-      User.findOne({ email })
+      User.findOne({ where: { email } })
         .then(user => {
           if (user === null) {
             done(null, false, { message: { type: 'error', content: 'User is not registered.' } });
           } else {
-             bcrypt.compare(password, user.password)
+            bcrypt.compare(password, user.password)
               .then(result => {
                 if (result == true) {
                   done(null, user);
                 } else {
-                   done(null, false, { message: { type: 'error', content: 'Password incorrect.' } });
-                 }
-               })
+                  done(null, false, { message: { type: 'error', content: 'Password incorrect.' } });
+                }
+              })
               .catch(err => {
-                 throw err;
+                throw err;
               });
           }
         })

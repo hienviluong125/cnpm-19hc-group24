@@ -1,0 +1,65 @@
+.fc-day:hover {
+  cursor: pointer;
+}
+
+.card-checkbox-thumb {
+  position: relative;
+  height: auto;
+  width: auto;
+}
+.card-checkbox-thumb::before {
+  content:'\A';
+  position:absolute;
+  z-index:99;
+  width:100%; height:100%;
+  top:0; left:0;
+  background:rgba(124, 114, 245, 0.6);
+  opacity:0;
+}
+
+.card-checkbox-thumb-icon {
+  position: absolute;
+  z-index: 98;
+  color:rgba(124, 114, 245, 1);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 100px;
+  visibility: hidden;
+}
+
+.card-checkbox-thumb:hover:before {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.card-checkbox-thumb.dp::before {
+  content:'\A';
+  position:absolute;
+  z-index:99;
+  width:100%; height:100%;
+  top:0; left:0;
+  background:rgba(124, 114, 245, 0.6);
+  opacity:1;
+}
+
+.card-checkbox-thumb-icon.dp {
+  position: absolute;
+  z-index: 98;
+  color:rgba(124, 114, 245, 1);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 100;
+  visibility: visible;
+}
+
+.card-checkbox-thumb-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.workshift:hover {
+  cursor: pointer;
+}

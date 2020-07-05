@@ -1,0 +1,54 @@
+<div class="container-fluid pt-2">
+  <%- include('./../shared/flash-message', { messages: messages }) %>
+  <div class="row">
+    <div class="col-md-4">
+      <h4 class="mt-2 pt-1">You received <%= requests.length %> requests today</h4>
+      <% if(requests.length > 0) { %>
+        <div class="row bg-white p-2" style="margin-top: 38px;overflow-y: scroll;max-height: 569px;">
+          <% for(let i = 0; i < requests.length; i++ ) { %>
+            <div class="col-12">
+              <div class="d-flex justify-content-between mt-1 mb-2">
+                <h5 class="mt-1"><%= `${requests[i].user.first_name} ${requests[i].user.last_name}` %></h5>
+                <a href="/trainers/<%= requests[i].id %>/accept" class="confirm-popup btn btn-primary btn-sm" data-warning-message="Do you want to accept this booking ? If yes please try to contact this member." >Accept</a>
+              </div>
+              <% if(i !== requests.length - 1) { %>
+                <hr>
+              <% } %>
+            </div>
+          <% } %>
+        </div>
+      <% } else { %>
+        There is nobody here.
+        <br>
+        It seems like you will free all day
+      <% } %>
+    </div>
+    <div class="col-md-8">
+      <div id="trainer-calendar" data-requests="<%= JSON.stringify(anonymousRequests) %>">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="memberList" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="memberListLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="memberListLabel"></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="memberListRow" class="row" style="overflow-y: scroll;max-height: 569px;">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

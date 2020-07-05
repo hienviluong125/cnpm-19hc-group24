@@ -1,0 +1,44 @@
+<div class="row mt-2">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-body">
+        <%- include('./../shared/flash-message', { messages: messages }) %>
+        <h4 class="header-title">Member management</h4>
+        <a href="/members/new" class="btn btn-primary mb-2">Create member account</a>
+        <div class="table-responsive-sm">
+          <table class="table table-centered mb-0">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach(function(user){ %>
+              <tr>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.gender %></td>
+                <td><%= user.phone %></td>
+                <td><%= user.address %></td>
+                <td>
+                  <a href="members/<%= user.id %>/packages" class="btn btn-info">Packages</a>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <%- include('./../shared/pagination', { resource, resourcePagy }) %>
+        </div> <!-- end table-responsive-->
+      </div> <!-- end card body-->
+    </div> <!-- end card -->
+  </div><!-- end col-->
+</div>

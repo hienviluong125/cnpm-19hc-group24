@@ -1,0 +1,174 @@
+<div class="container-fluid pt-2">
+  <%- include('./../shared/flash-message', { messages: messages }) %>
+  <div class="row">
+    <div class="col-md-4">
+      <h3 class="mb-3">Workshift management</h3>
+      <a href='/workshifts/new' class="btn btn-primary">Add new</a>
+    </div>
+    <div class="col-md-12">
+      <div class="fc fc-unthemed fc-ltr">
+        <div class="fc-view-container" style="">
+          <div class="fc-view fc-month-view fc-basic-view" style="">
+            <table class="">
+              <thead class="fc-head">
+                <tr>
+                  <td class="fc-head-container fc-widget-header">
+                    <div class="fc-row fc-widget-header">
+                      <table class="">
+                        <thead>
+                          <tr>
+                            <th class="fc-day-header fc-widget-header fc-mon"><span>Shift</span></th>
+                            <th class="fc-day-header fc-widget-header fc-mon"><span>Mon</span></th>
+                            <th class="fc-day-header fc-widget-header fc-tue"><span>Tue</span></th>
+                            <th class="fc-day-header fc-widget-header fc-wed"><span>Wed</span></th>
+                            <th class="fc-day-header fc-widget-header fc-thu"><span>Thu</span></th>
+                            <th class="fc-day-header fc-widget-header fc-fri"><span>Fri</span></th>
+                            <th class="fc-day-header fc-widget-header fc-sat"><span>Sat</span></th>
+                            <th class="fc-day-header fc-widget-header fc-sun"><span>Sun</span></th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody class="fc-body">
+                <tr>
+                  <td class="fc-widget-content">
+                    <div class="fc-scroller fc-day-grid-container" style="overflow: hidden;">
+                      <div class="fc-day-grid fc-unselectable">
+                        <div class="fc-row fc-week fc-widget-content fc-rigid" style="height: 100px" >
+                          <div class="fc-bg">
+                            <table class="">
+                              <tbody>
+                                <tr>
+                                  <td class="bg-white font-weight-bold text-center pt-4">7h ~ 10h</td>
+                                  <td data-ws-time-label="Monday 7h ~ 10h" data-ws-id="<%= workshifts['Monday']['7h ~ 10h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Monday']['7h ~ 10h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Tuesday 7h ~ 10h" data-ws-id="<%= workshifts['Tuesday']['7h ~ 10h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Tuesday']['7h ~ 10h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Wednesday 7h ~ 10h" data-ws-id="<%= workshifts['Wednesday']['7h ~ 10h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Wednesday']['7h ~ 10h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Thursday 7h ~ 10h" data-ws-id="<%= workshifts['Thursday']['7h ~ 10h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Thursday']['7h ~ 10h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Friday 7h ~ 10h" data-ws-id="<%= workshifts['Friday']['7h ~ 10h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Friday']['7h ~ 10h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Saturday 7h ~ 10h" data-ws-id="<%= workshifts['Saturday']['7h ~ 10h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Saturday']['7h ~ 10h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Sunday 7h ~ 10h" data-ws-id="<%= workshifts['Sunday']['7h ~ 10h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Sunday']['7h ~ 10h'].count %> Staffs</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="fc-row fc-week fc-widget-content fc-rigid" style="height: 100px" >
+                          <div class="fc-bg">
+                            <table class="">
+                              <tbody>
+                                <tr>
+                                  <td class="bg-white font-weight-bold text-center pt-4">10h ~ 13h</td>
+                                  <td data-ws-time-label="Monday 10h ~ 13h" data-ws-id="<%= workshifts['Monday']['10h ~ 13h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Monday']['10h ~ 13h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Tuesday 10h ~ 13h" data-ws-id="<%= workshifts['Tuesday']['10h ~ 13h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Tuesday']['10h ~ 13h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Wednesday 10h ~ 13h" data-ws-id="<%= workshifts['Wednesday']['10h ~ 13h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Wednesday']['10h ~ 13h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Thursday 10h ~ 13h" data-ws-id="<%= workshifts['Thursday']['10h ~ 13h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Thursday']['10h ~ 13h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Friday 10h ~ 13h" data-ws-id="<%= workshifts['Friday']['10h ~ 13h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Friday']['10h ~ 13h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Saturday 10h ~ 13h" data-ws-id="<%= workshifts['Saturday']['10h ~ 13h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Saturday']['10h ~ 13h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Sunday 10h ~ 13h" data-ws-id="<%= workshifts['Sunday']['10h ~ 13h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Sunday']['10h ~ 13h'].count %> Staffs</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="fc-row fc-week fc-widget-content fc-rigid" style="height: 100px" >
+                          <div class="fc-bg">
+                            <table class="">
+                              <tbody>
+                                <tr>
+                                  <td class="bg-white font-weight-bold text-center pt-4">13h ~ 16h</td>
+                                  <td data-ws-time-label="Monday 13h ~ 16h" data-ws-id="<%= workshifts['Monday']['13h ~ 16h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Monday']['13h ~ 16h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Tuesday 13h ~ 16h" data-ws-id="<%= workshifts['Tuesday']['13h ~ 16h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Tuesday']['13h ~ 16h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Wednesday 13h ~ 16h" data-ws-id="<%= workshifts['Wednesday']['13h ~ 16h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Wednesday']['13h ~ 16h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Thursday 13h ~ 16h" data-ws-id="<%= workshifts['Thursday']['13h ~ 16h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Thursday']['13h ~ 16h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Friday 13h ~ 16h" data-ws-id="<%= workshifts['Friday']['13h ~ 16h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Friday']['13h ~ 16h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Saturday 13h ~ 16h" data-ws-id="<%= workshifts['Saturday']['13h ~ 16h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Saturday']['13h ~ 16h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Sunday 13h ~ 16h" data-ws-id="<%= workshifts['Sunday']['13h ~ 16h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Sunday']['13h ~ 16h'].count %> Staffs</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="fc-row fc-week fc-widget-content fc-rigid" style="height: 100px" >
+                          <div class="fc-bg">
+                            <table class="">
+                              <tbody>
+                                <tr>
+                                  <td class="bg-white font-weight-bold text-center pt-4">16h ~ 19h</td>
+                                  <td data-ws-time-label="Monday 16h ~ 19h" data-ws-id="<%= workshifts['Monday']['16h ~ 19h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Monday']['16h ~ 19h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Tuesday 16h ~ 19h" data-ws-id="<%= workshifts['Tuesday']['16h ~ 19h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Tuesday']['16h ~ 19h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Wednesday 16h ~ 19h" data-ws-id="<%= workshifts['Wednesday']['16h ~ 19h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Wednesday']['16h ~ 19h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Thursday 16h ~ 19h" data-ws-id="<%= workshifts['Thursday']['16h ~ 19h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Thursday']['16h ~ 19h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Friday 16h ~ 19h" data-ws-id="<%= workshifts['Friday']['16h ~ 19h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Friday']['16h ~ 19h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Saturday 16h ~ 19h" data-ws-id="<%= workshifts['Saturday']['16h ~ 19h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Saturday']['16h ~ 19h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Sunday 16h ~ 19h" data-ws-id="<%= workshifts['Sunday']['16h ~ 19h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Sunday']['16h ~ 19h'].count %> Staffs</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="fc-row fc-week fc-widget-content fc-rigid" style="height: 100px">
+                          <div class="fc-bg">
+                            <table class="">
+                              <tbody>
+                                <tr>
+                                  <td class="bg-white font-weight-bold text-center pt-4">19h ~ 21h</td>
+                                  <td data-ws-time-label="Monday 19h ~ 21h" data-ws-id="<%= workshifts['Monday']['19h ~ 21h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Monday']['19h ~ 21h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Tuesday 19h ~ 21h" data-ws-id="<%= workshifts['Tuesday']['19h ~ 21h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Tuesday']['19h ~ 21h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Wednesday 19h ~ 21h" data-ws-id="<%= workshifts['Wednesday']['19h ~ 21h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Wednesday']['19h ~ 21h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Thursday 19h ~ 21h" data-ws-id="<%= workshifts['Thursday']['19h ~ 21h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Thursday']['19h ~ 21h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Friday 19h ~ 21h" data-ws-id="<%= workshifts['Friday']['19h ~ 21h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Friday']['19h ~ 21h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Saturday 19h ~ 21h" data-ws-id="<%= workshifts['Saturday']['19h ~ 21h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Saturday']['19h ~ 21h'].count %> Staffs</td>
+                                  <td data-ws-time-label="Sunday 19h ~ 21h" data-ws-id="<%= workshifts['Sunday']['19h ~ 21h'].workshift_id %>" class="bg-white text-primary text-center font-weight-bold pt-4 workshift"><%= workshifts['Sunday']['19h ~ 21h'].count %> Staffs</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+<div id="userList" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="userListLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="userListLabel">
+          <span class="text-center">Staffs work for this shift</span>
+          <br>
+          <span id="userListShiftLabel"></span>
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="userListRow">
+          <div class="col-12">
+            <div class="d-flex justify-content-between mt-1 mb-2">
+              <h5 class="mt-1">Nguyen van A</h5>
+            </div>
+            <hr>
+          </div>
+          <div class="col-12">
+            <div class="d-flex justify-content-between mt-1 mb-2">
+              <h5 class="mt-1">Nguyen van A</h5>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

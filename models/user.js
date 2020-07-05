@@ -11,12 +11,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true
     },
+    gender: {
+      type: DataTypes.STRING
+    },
+    phone: {
+      type: DataTypes.STRING
+    },
+    address: {
+      type: DataTypes.STRING
+    },
     password: DataTypes.STRING,
-    role: { type: DataTypes.ENUM, values: ['admin', 'member'] },
+    role: { type: DataTypes.ENUM, values: ['admin', 'consultant', 'member', 'financial_advisor', 'manager', 'trainer', 'technician'] },
     email: DataTypes.STRING
   }, {});
   User.associate = function (models) {
     // associations can be defined here
+    User.hasMany(models.Request, { foreignKey: 'user_id', as: 'requestsToTrainer' });
+    User.hasMany(models.Request, { foreignKey: 'trainer_id', as: 'requestsFromMember' });
   };
   return User;
 };

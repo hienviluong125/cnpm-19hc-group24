@@ -1,0 +1,98 @@
+<div class="row mt-2">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-body">
+        <%- include('./../shared/flash-message', { messages: messages }) %>
+        <h4 class="header-title">
+          <strong class="font-weight-bold">Incomes & Expense </strong>
+          <span>Of</span>
+          <span class="font-weight-bold text-primary">
+            <%= dateLabel %></h4>
+          </span>
+        <div class="d-flex justify-content-between">
+          <div class="btn-groups">
+            <a href="/income-and-expenses/new" class="btn btn-info mb-2">Add new record</a>
+            <% if(filtertype == 'bydate'){ %>
+              <a target="_blank" href="<%= `/income-and-expenses/print?date=${filterByDateStr}&filtertype=bydate` %>" class="btn btn-primary mb-2">Print all</a>
+            <% } else if(filtertype == 'bymonth') { %>
+              <a target="_blank" href="<%= `/income-and-expenses/print?month=${filterByMonthStr[0]}&year=${filterByMonthStr[1]}&filtertype=bymonth` %>" class="btn btn-primary mb-2">Print all</a>
+            <% } %>
+
+          </div>
+          <div>
+            <div class="filter-by-date float-left <%= filtertype != 'bydate' ? 'd-none' : ''%>">
+              <form class="form-inline" action="/income-and-expenses">
+                <input name="date" type="text" class="form-control date" data-toggle="date-picker"
+                data-single-date-picker="true" value="<%= filterByDateStr %>">
+                <input type="hidden" name="filtertype" value="bydate">
+                <button type="submit" class="btn btn-success ml-1">Filter</button>
+              </form>
+            </div>
+            <div class="filter-by-month float-left <%= filtertype != 'bymonth' ? 'd-none' : ''%>">
+              <form class="form-inline" action="/income-and-expenses">
+                <select name="month" class="form-control w-auto mr-1 float-left">
+                  <% for(let i = 1; i <= 12; i++) { %>
+                    <% if(i == filterByMonthStr[0]) { %>
+                      <option selected value="<%= i %>"><%= i %></option>
+                    <% } else { %>
+                      <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                  <% } %>
+                </select>
+
+                <select name="year" class="form-control w-auto float-left">
+                  <% for(let i = 2000; i < 2050; i++) { %>
+                    <% if(i == filterByMonthStr[1]) { %>
+                      <option selected value="<%= i %>"><%= i %></option>
+                    <% } else { %>
+                      <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                  <% } %>
+                </select>
+                <input type="hidden" name="filtertype" value="bymonth">
+                <button type="submit" class="btn btn-success ml-1">Filter</button>
+              </form>
+            </div>
+            <div class="float-left btn-group ml-1">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Filter type</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item filter-by-dropdown" href="#" data-filter-type="date">Filter by date</a>
+                <a class="dropdown-item filter-by-dropdown" href="#" data-filter-type="month">Filter by month</a>
+              </div>
+            </div><!-- /btn-group -->
+          </div>
+
+        </div>
+        <% if(incomeAndExpenses.length > 0){  %>
+          <div class="table-responsive-sm">
+            <table class="table table-centered mb-0">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Income</th>
+                  <th>Expense</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% incomeAndExpenses.forEach(function(iae){ %>
+                <tr>
+                  <td><%= moment(iae.date).format('MMMM Do YYYY, h:mm a') %></td>
+                  <td><%= iae.in_amount %></td>
+                  <td><%= iae.out_amount %></td>
+                  <td>
+                    <a href="/income-and-expenses/<%=iae.id%>/print" target="_blank" class="btn btn-primary">Print</a>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div> <!-- end table-responsive-->
+        <% } else { %>
+          <h4 class="text-left">No result</h4>
+        <% } %>
+      </div> <!-- end card body-->
+    </div> <!-- end card -->
+  </div><!-- end col-->
+</div>

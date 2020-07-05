@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "routes": "node listEndpoints.js"
+    "routes": "node listEndpoints.js",
+    "seed": "node dev.js"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
@@ -19,16 +20,18 @@
     "express-session": "^1.17.1",
     "express-validator": "^6.4.1",
     "http-errors": "~1.6.3",
+    "moment": "^2.26.0",
     "morgan": "~1.9.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "pdfmake": "^0.1.65",
     "pg": "^8.0.3",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.7"
   },
   "devDependencies": {
     "faker": "^4.1.0",
-    "nodemon": "^2.0.3",
+    "nodemon": "^2.0.4",
     "sequelize-cli": "^5.5.1"
   }
 }
