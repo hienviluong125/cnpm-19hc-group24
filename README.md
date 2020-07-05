@@ -17,7 +17,6 @@ how to install and init database ?
 - npm install --save-dev sequelize-cli
 - npx sequelize-cli db:create
 - npx sequelize-cli db:migrate
-- npx sequelize-cli db:seed:all
 
 how to run project ?
 - npm run start
