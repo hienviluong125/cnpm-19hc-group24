@@ -96,6 +96,7 @@ router.get('/booking-histories', Authorization(['admin', 'trainer']), async func
 });
 
 router.get('/anonymous/requests', async function (req, res, next) {
+  let currentUser = req.user;
   let bookDate = new Date();
 
   if (typeof req.query.date !== 'undefined') {
@@ -110,7 +111,7 @@ router.get('/anonymous/requests', async function (req, res, next) {
   const requests = await Request.findAll({
     where: {
       accepted: false,
-      trainer_id: null,
+      trainer_id: currentUser.id,
       book_at: {
         [Op.between]: [bookDateStart, bookDateEnd]
       },

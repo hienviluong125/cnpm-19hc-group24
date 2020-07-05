@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Package = require('./../models/index').Package;
+const Authentication = require('./../middlewares/authentication');
+const Authorization = require('./../middlewares/authorization');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', Authentication, function (req, res, next) {
   const messages = req.flash('messages');
   res.render('index', { title: 'Express', messages });
 });
